@@ -15,7 +15,7 @@ export const Form = styled.form`
 `;
 
 export const Title = styled.h2`
-  font-size: 18px;
+  font-size: 30px;
   font-weight: 600;
   margin-top: 0;
   margin-bottom: 10px;

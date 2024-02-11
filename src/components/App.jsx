@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { WrapperContent } from './App.styled';
 import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
-import Contacts from './Contacts/ContactListItem';
+import Contacts from './ContactListItem/ContactListItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from '../redux/operations';
 import { selectError, selectIsLoading } from '../redux/selectors';

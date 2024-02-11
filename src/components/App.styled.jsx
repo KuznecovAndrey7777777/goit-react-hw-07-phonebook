@@ -6,4 +6,5 @@ export const WrapperContent = styled.div`
   flex-direction: column;
   margin: 0 auto;
   align-items: center;
+  margin: 20px auto;
 `;
