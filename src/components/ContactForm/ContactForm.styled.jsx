@@ -13,10 +13,12 @@ export const Form = styled.form`
   border-radius: 10px;
   background-color: white;
 `;
+
 export const Title = styled.h2`
   font-size: 30px;
   font-weight: 600;
 `;
+
 
 export const Input = styled.input`
   display: block;

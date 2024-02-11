@@ -1,13 +1,6 @@
 import styled from '@emotion/styled';
 
-export const Title = styled.h2`
-  font-size: 18px;
-  font-weight: 600;
-  margin-top: 0;
-  margin-bottom: 10px;
-`;
-
-export const ContactsList = styled.ul`
+export const List = styled.ul`
   list-style: none;
   margin: 0;
   margin-bottom: 35px;
@@ -68,7 +61,9 @@ export const DeleteBtn = styled.button`
   }
 `;
 
-export const Message = styled.p`
-  font-size: 30px;
-  font-weight: 400;
+export const BtnWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 10px;
 `;

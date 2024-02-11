@@ -14,7 +14,6 @@ export const FilterInput = styled.input`
   margin-bottom: 10px;
   margin-top: 10px;
   padding: 15px;
-  
 
   border: 0;
   outline: 0;
