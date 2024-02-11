@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { WrapperContent } from './App.styled';
 import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
-import Contacts from './Contacts/Contacts';
+import Contacts from './Contacts/ContactListItem';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchContacts } from '../redux/operation';
+import { fetchContacts } from '../redux/operations';
 import { selectError, selectIsLoading } from '../redux/selectors';
 
 const App = () => {
@@ -17,10 +17,10 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <WrapperContent> {/* оновлено назву компонента */}
+    <WrapperContent>
       <ContactForm />
       <Filter />
-      {isLoading && !error && <b>Request in progress...</b>}
+      {isLoading && !error && <b>Запит обробляється...</b>}
       <Contacts />
     </WrapperContent>
   );

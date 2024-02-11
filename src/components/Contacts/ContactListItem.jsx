@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import ContactsList from '../ContactsList/ContactsList';
 import { selectContacts } from '../../redux/selectors';
-import { Title, Message, ContactsWrapper } from './Contacts.styled';
+import { Title, Message, ContactsWrapper } from './ContactListItem.styled';
 
 const Contacts = () => {
   const contacts = useSelector(selectContacts);
@@ -14,7 +14,7 @@ const Contacts = () => {
         {contacts.length > 0 ? (
           <ContactsList />
         ) : (
-          <Message>Add your first contact</Message>
+          <Message>Додайте свій перший контакт</Message>
         )}
       </ContactsWrapper>
     </>

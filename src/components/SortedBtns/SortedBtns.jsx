@@ -1,29 +1,19 @@
-import {
-  sortByAdded,
-  sortByName,
-  toggleShowFavourites,
-} from 'redux/contactsSlice';
-import {
-  selectSortedAlphabetic,
-  selectRecentlyAdded,
-  selectFavIsShown,
-} from 'redux/selectors';
+import { sortByAdded, sortByName } from 'redux/contactsSlice';
+import { selectSortedAlphabetic, selectRecentlyAdded } from 'redux/selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   TbSortAscendingLetters,
   TbSortDescendingLetters,
   TbSortAscending2,
   TbSortDescending2,
-  TbUserHeart,
 } from 'react-icons/tb';
 import { SortBtn, BtnWrapper } from './SortedBtns.styled';
 
 const SortedBtns = () => {
-  const favIsShown = useSelector(selectFavIsShown);
   const sortedAlphabetic = useSelector(selectSortedAlphabetic);
   const recentlyAdded = useSelector(selectRecentlyAdded);
   const dispatch = useDispatch();
-  const textToShow = !favIsShown ? 'Show my favourites' : 'Show all';
+
   return (
     <BtnWrapper>
       <SortBtn onClick={() => dispatch(sortByName())}>
@@ -41,9 +31,6 @@ const SortedBtns = () => {
         ) : (
           <TbSortDescending2 size="20" />
         )}
-      </SortBtn>
-      <SortBtn onClick={() => dispatch(toggleShowFavourites())}>
-        {textToShow} <TbUserHeart size="20" />
       </SortBtn>
     </BtnWrapper>
   );

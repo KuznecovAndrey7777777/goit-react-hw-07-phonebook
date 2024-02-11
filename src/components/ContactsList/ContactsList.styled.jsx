@@ -16,6 +16,7 @@ export const ListItem = styled.li`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 10px;
 `;
 
 export const DeleteBtn = styled.button`

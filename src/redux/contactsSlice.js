@@ -43,21 +43,6 @@ export const deleteContact = createAsyncThunk(
   }
 );
 
-export const toggleIsFavourite = createAsyncThunk(
-  'contacts/toggleIsFavourite',
-  async ({ id, isFavourite }, thunkAPI) => {
-    try {
-      const response = await axios.put(`/contacts/${id}`, {
-        isFavourite: !isFavourite,
-      });
-      console.log(response.data);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: {
@@ -66,7 +51,6 @@ const contactsSlice = createSlice({
     isLoading: false,
     sortedAlphabetic: true,
     recentlyAdded: true,
-    favIsShown: false,
   },
   reducers: {
     sortByName(state) {
@@ -85,9 +69,6 @@ const contactsSlice = createSlice({
       );
       state.recentlyAdded = !state.recentlyAdded;
     },
-    toggleShowFavourites(state) {
-      state.favIsShown = !state.favIsShown;
-    },
   },
   extraReducers: (builder) => {
     builder
@@ -104,7 +85,7 @@ const contactsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         Notiflix.Notify.success(
-          `${action.payload.name} has been successfully added to your phonebook`
+          `${action.payload.name} успішно додано до вашої телефонної книги`
         );
       })
       .addCase(addContact.rejected, handleRejected)
@@ -116,19 +97,9 @@ const contactsSlice = createSlice({
           (contact) => contact.id !== action.payload.id
         );
       })
-      .addCase(deleteContact.rejected, handleRejected)
-      .addCase(toggleIsFavourite.pending, handlePending)
-      .addCase(toggleIsFavourite.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-        const index = state.contacts.findIndex(
-          (contact) => contact.id === action.payload.id
-        );
-        state.contacts[index] = action.payload;
-      })
-      .addCase(toggleIsFavourite.rejected, handleRejected);
+      .addCase(deleteContact.rejected, handleRejected);
   },
 });
 
 export default contactsSlice.reducer;
-export const { sortByName, sortByAdded, toggleShowFavourites } = contactsSlice.actions;
+export const { sortByName, sortByAdded } = contactsSlice.actions;

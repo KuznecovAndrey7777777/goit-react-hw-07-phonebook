@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
 export const SortBtn = styled.button`
   min-width: 180px;
@@ -44,11 +44,4 @@ export const SortBtn = styled.button`
     left: 0;
     width: 100%;
   }
-`;
-
-export const BtnWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 10px;
 `;
