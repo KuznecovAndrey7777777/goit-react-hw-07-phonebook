@@ -52,24 +52,7 @@ const contactsSlice = createSlice({
     sortedAlphabetic: true,
     recentlyAdded: true,
   },
-  reducers: {
-    sortByName(state) {
-      state.contacts = state.contacts.sort((firstContact, secondContact) =>
-        state.sortedAlphabetic
-          ? firstContact.name.localeCompare(secondContact.name)
-          : secondContact.name.localeCompare(firstContact.name)
-      );
-      state.sortedAlphabetic = !state.sortedAlphabetic;
-    },
-    sortByAdded(state) {
-      state.contacts = state.contacts.sort((firstContact, secondContact) =>
-        state.recentlyAdded
-          ? secondContact.id - firstContact.id
-          : firstContact.id - secondContact.id
-      );
-      state.recentlyAdded = !state.recentlyAdded;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchContacts.pending, handlePending)
@@ -102,4 +85,3 @@ const contactsSlice = createSlice({
 });
 
 export default contactsSlice.reducer;
-export const { sortByName, sortByAdded } = contactsSlice.actions;

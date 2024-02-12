@@ -1,23 +1,30 @@
-import { Input, AddButton, Form, Title } from './ContactForm.styled';
-import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/operations';
-import { useSelector } from 'react-redux';
-import { selectContacts } from '../../redux/selectors';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Notiflix from 'notiflix';
+import { addContact } from '../../redux/operations';
+import { selectContacts } from '../../redux/selectors';
+import { Title, Form, Input, AddButton } from './ContactForm.styled';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     const { name, phone } = e.target;
     const contact = { name: name.value, phone: phone.value };
 
     if (contacts.find(existingContact => existingContact.name === name.value)) {
-      Notiflix.Notify.failure(`${contact.name} is already in your contacts`);
+      Notiflix.Notify.failure(`${contact.name} вже у ваших контактах`);
     } else {
-      dispatch(addContact(contact));
+      try {
+        await dispatch(addContact(contact));
+        Notiflix.Notify.success(
+          `${contact.name} успішно додано до вашої телефонної книги`
+        );
+      } catch (error) {
+        // обробка помилок
+      }
     }
     e.target.reset();
   };
@@ -30,7 +37,7 @@ const ContactForm = () => {
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Назва може містити лише літери, апостроф, тире та пробіли. Наприклад Адріан, Джейкоб Мерсер, Шарль де Бац де Кастельмор д'Артаньян"
+          title="Назва може містити лише літери, апостроф, тире та пробіли. Наприклад Адріан, Джейкоб Мерсер, Шарль де Бац де Кастельмор д'Артань"
           required
           placeholder="Name"
         />
@@ -43,7 +50,7 @@ const ContactForm = () => {
           placeholder="Number"
         />
         <AddButton type="submit">
-          <span>Add contacts </span>
+          <span>Add contacts</span>
         </AddButton>
       </Form>
     </>
