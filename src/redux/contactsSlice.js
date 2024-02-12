@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import Notiflix from 'notiflix';
 
 axios.defaults.baseURL = 'https://65c7b172e7c384aada6ed863.mockapi.io';
 
@@ -67,9 +66,6 @@ const contactsSlice = createSlice({
         state.contacts.unshift(action.payload);
         state.isLoading = false;
         state.error = null;
-        Notiflix.Notify.success(
-          `${action.payload.name} успішно додано до вашої телефонної книги`
-        );
       })
       .addCase(addContact.rejected, handleRejected)
       .addCase(deleteContact.pending, handlePending)
